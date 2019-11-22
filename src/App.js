@@ -11,7 +11,8 @@ import { createStructuredSelector } from 'reselect';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import CheckoutPage from './pages/checkout/checkout.component';
-
+import styled from 'styled-components';
+ 
 class App extends React.Component {
 	unsubscibeFromAuth = null;
 
