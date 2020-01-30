@@ -1,5 +1,3 @@
-import { returnStatement } from '@babel/types';
-
 export const addItemToCart = (cartItems, cartItemToAdd) => {
 	const existingCartItem = cartItems.find(
 		cartItem => cartItem.id === cartItemToAdd.id
@@ -27,9 +25,9 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
 	return cartItems.map(cartItem =>
 		cartItem.id === cartItemToRemove.id
 			? {
-					...cartItem,
-					quantity: cartItem.quantity - 1
-			  }
+				...cartItem,
+				quantity: cartItem.quantity - 1
+			}
 			: cartItem
 	);
 };
