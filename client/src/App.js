@@ -3,20 +3,19 @@ import './App.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import HomePage from './pages/homepage/hompage.component';
 import ShopPage from './pages/shop/shop.components';
-import Header from './components/header/header.component';
+import Header from './components/header/header.container';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
-import { selectCollectionsForPreview } from './redux/shop/shop.selector'
+import { selectCollectionsForPreview } from './redux/shop/shop.selector';
 import CheckoutPage from './pages/checkout/checkout.component';
 
 const App = ({ checkUserSession, currentUser }) => {
 	useEffect(() => {
 		checkUserSession();
-	}, [checkUserSession])
-
+	}, [checkUserSession]);
 
 	return (
 		<div>
@@ -29,26 +28,18 @@ const App = ({ checkUserSession, currentUser }) => {
 					exact
 					path='/signin'
 					render={() =>
-						currentUser ? (
-							<Redirect to='/' />
-						) : (
-								<SignInAndSignUpPage />
-							)
+						currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
 					}
 				/>
 			</Switch>
 		</div>
 	);
-
-}
+};
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
 	collectionArray: selectCollectionsForPreview
 });
 const mapDispatchToProps = dispatch => ({
 	checkUserSession: () => dispatch(checkUserSession())
-})
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(App);
+});
+export default connect(mapStateToProps, mapDispatchToProps)(App);
