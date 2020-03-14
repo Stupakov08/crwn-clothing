@@ -5,7 +5,7 @@ const path = require('path');
 
 if (process.env.MODE_ENV !== 'production') require('dotenv').config();
 
-const stripe = require('stripe')("sk_live_MiQlxYMFVOwmZEQAYeR3Nkfx00pRQMUuft");
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 
